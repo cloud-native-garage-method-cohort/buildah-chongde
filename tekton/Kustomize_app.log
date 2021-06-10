@@ -1,0 +1,197 @@
+
+15:00 $ tkn pr logs chongde-pipeline-from-scratch-pipeline-run-nkkfm -f
+[clone-repository : clone] + CHECKOUT_DIR=/workspace/output/
+[clone-repository : clone] + '[[' true '==' true ]]
+[clone-repository : clone] + cleandir
+[clone-repository : clone] + '[[' -d /workspace/output/ ]]
+[clone-repository : clone] + rm -rf /workspace/output//lost+found
+[clone-repository : clone] + rm -rf '/workspace/output//.[!.]*'
+[clone-repository : clone] + rm -rf '/workspace/output//..?*'
+[clone-repository : clone] + test -z 
+[clone-repository : clone] + test -z 
+[clone-repository : clone] + test -z 
+[clone-repository : clone] + /ko-app/git-init -url https://github.com/cloud-native-garage-method-cohort/buildah-chongde -revision  -refspec  -path /workspace/output/ '-sslVerify=true' '-submodules=true' -depth 1 -sparseCheckoutDirectories 
+[clone-repository : clone] {"level":"info","ts":1623308550.3760762,"caller":"git/git.go:169","msg":"Successfully cloned https://github.com/cloud-native-garage-method-cohort/buildah-chongde @ f9cf9bf0fc2cdfd3f68b258bd081ece5b6da04ba (grafted, HEAD) in path /workspace/output/"}
+[clone-repository : clone] {"level":"info","ts":1623308550.5260544,"caller":"git/git.go:207","msg":"Successfully initialized and updated submodules in path /workspace/output/"}
+[clone-repository : clone] + cd /workspace/output/
+[clone-repository : clone] + git rev-parse HEAD
+[clone-repository : clone] + RESULT_SHA=f9cf9bf0fc2cdfd3f68b258bd081ece5b6da04ba
+[clone-repository : clone] + EXIT_CODE=0
+[clone-repository : clone] + '[' 0 '!=' 0 ]
+[clone-repository : clone] + echo -n f9cf9bf0fc2cdfd3f68b258bd081ece5b6da04ba
+[clone-repository : clone] + echo -n https://github.com/cloud-native-garage-method-cohort/buildah-chongde
+
+[install-dependencies : npm-run] 
+[install-dependencies : npm-run] > core-js@2.6.12 postinstall /workspace/source/node_modules/core-js
+[install-dependencies : npm-run] > node -e "try{require('./postinstall')}catch(e){}"
+[install-dependencies : npm-run] 
+[install-dependencies : npm-run] added 122 packages in 6.383s
+
+[run-tests : npm-run] 
+[run-tests : npm-run] > buildah-chongde@0.0.0 test /workspace/source
+[run-tests : npm-run] > echo 'Error: no test specified'
+[run-tests : npm-run] 
+[run-tests : npm-run] Error: no test specified
+
+[build-image : build] + buildah --storage-driver=overlay bud --format=oci --tls-verify=true --no-cache -f ./Dockerfile -t quay.io/hchongde/buildah-chongde:f9cf9bf0fc2cdfd3f68b258bd081ece5b6da04ba .
+[build-image : build] STEP 1: FROM quay.io/jeffdean/node-alpine:latest
+[build-image : build] Getting image source signatures
+[build-image : build] Copying blob sha256:72b89a422da5b9112731f26727ea939e86415040eff7f0a67345ec037229e023
+[build-image : build] Copying blob sha256:2aa15c209059b0bf8b6b22bd6d6665d7234f1773e49c2850bee3ff053c9cf47b
+[build-image : build] Copying blob sha256:2b54d6979bcc4785e4527b704bce0140c731f5a85114268be158f3b5c6e3a19d
+[build-image : build] Copying blob sha256:540db60ca9383eac9e418f78490994d0af424aab7bf6d0e47ac8ed4e2e9bcbba
+[build-image : build] Copying config sha256:50389f7769d04dc1aab37de3ea69f52cd304acc1ac593ed9d4a8bc252584110c
+[build-image : build] Writing manifest to image destination
+[build-image : build] Storing signatures
+[build-image : build] STEP 2: COPY . /app/
+[build-image : build] STEP 3: WORKDIR /app
+[build-image : build] STEP 4: RUN npm install --silent
+[build-image : build] npm notice 
+[build-image : build] npm notice New minor version of npm available! 7.11.2 -> 7.16.0
+[build-image : build] npm notice Changelog: <https://github.com/npm/cli/releases/tag/v7.16.0>
+[build-image : build] npm notice Run `npm install -g npm@7.16.0` to update!
+[build-image : build] npm notice 
+[build-image : build] STEP 5: EXPOSE 3000
+[build-image : build] STEP 6: CMD ["npm", "start"]
+[build-image : build] STEP 7: COMMIT quay.io/hchongde/buildah-chongde:f9cf9bf0fc2cdfd3f68b258bd081ece5b6da04ba
+[build-image : build] --> be8ecff34a0
+[build-image : build] be8ecff34a0285c53af367b88623d52c16ec6cdb53abaadfd7b5779ab8707b67
+
+[build-image : push] + buildah --storage-driver=overlay push --tls-verify=true --digestfile /workspace/source/image-digest quay.io/hchongde/buildah-chongde:f9cf9bf0fc2cdfd3f68b258bd081ece5b6da04ba docker://quay.io/hchongde/buildah-chongde:f9cf9bf0fc2cdfd3f68b258bd081ece5b6da04ba
+[build-image : push] Getting image source signatures
+[build-image : push] Copying blob sha256:5d30c35579a6e250617b56c20fb73601dfa986b66c603c6b23a2e4dd26a20175
+[build-image : push] Copying blob sha256:ed210c663870a161d0d084b36a8765a6e78f121b9a51b24dfd5f2fd71b99b4f0
+[build-image : push] Copying blob sha256:705614f99d37c840f420251c92666b752d8e6ebbb9d2c9a3fbd7d987836efc73
+[build-image : push] Copying blob sha256:d8871dbe0b2341426f3c4769eb2e14914b8169d67598be2c0e8cc7d6dac0daff
+[build-image : push] Copying blob sha256:b2d5eeeaba3a22b9b8aa97261957974a6bd65274ebd43e1d81d0a7b8b752b116
+[build-image : push] Copying config sha256:be8ecff34a0285c53af367b88623d52c16ec6cdb53abaadfd7b5779ab8707b67
+[build-image : push] Writing manifest to image destination
+[build-image : push] Copying config sha256:be8ecff34a0285c53af367b88623d52c16ec6cdb53abaadfd7b5779ab8707b67
+[build-image : push] Writing manifest to image destination
+[build-image : push] Writing manifest to image destination
+[build-image : push] Storing signatures
+
+[build-image : digest-to-results] + cat /workspace/source/image-digest
+[build-image : digest-to-results] + tee /tekton/results/IMAGE_DIGEST
+[build-image : digest-to-results] sha256:c9c7e9cf50fe9b5367120df0937b2becf201d968de2bedcfed0fbecebc44625b
+
+[kustomize-build : kustomize-build] manifests.yaml successfully generated
+[kustomize-build : kustomize-build] contents of manifests is:
+[kustomize-build : kustomize-build] apiVersion: v1
+[kustomize-build : kustomize-build] kind: Service
+[kustomize-build : kustomize-build] metadata:
+[kustomize-build : kustomize-build]   labels:
+[kustomize-build : kustomize-build]     app: chongde-pipeline-from-scratch
+[kustomize-build : kustomize-build]     app.kubernetes.io/instance: chongde-pipeline-from-scratch
+[kustomize-build : kustomize-build]     app.kubernetes.io/name: chongde-pipeline-from-scratch
+[kustomize-build : kustomize-build]   name: chongde-live-pfs
+[kustomize-build : kustomize-build] spec:
+[kustomize-build : kustomize-build]   ports:
+[kustomize-build : kustomize-build]   - name: http
+[kustomize-build : kustomize-build]     port: 80
+[kustomize-build : kustomize-build]     protocol: TCP
+[kustomize-build : kustomize-build]     targetPort: 3000
+[kustomize-build : kustomize-build]   selector:
+[kustomize-build : kustomize-build]     app: chongde-pipeline-from-scratch
+[kustomize-build : kustomize-build]     app.kubernetes.io/instance: chongde-pipeline-from-scratch
+[kustomize-build : kustomize-build]     app.kubernetes.io/name: chongde-pipeline-from-scratch
+[kustomize-build : kustomize-build]   sessionAffinity: None
+[kustomize-build : kustomize-build]   type: ClusterIP
+[kustomize-build : kustomize-build] ---
+[kustomize-build : kustomize-build] apiVersion: apps/v1
+[kustomize-build : kustomize-build] kind: Deployment
+[kustomize-build : kustomize-build] metadata:
+[kustomize-build : kustomize-build]   annotations:
+[kustomize-build : kustomize-build]     app.openshift.io/vcs-ref: master
+[kustomize-build : kustomize-build]     app.openshift.io/vcs-uri: https://github.com/cloud-native-garage-method-cohort/buildah-chongde
+[kustomize-build : kustomize-build]   labels:
+[kustomize-build : kustomize-build]     app: chongde-pipeline-from-scratch
+[kustomize-build : kustomize-build]     app.kubernetes.io/instance: chongde-pipeline-from-scratch
+[kustomize-build : kustomize-build]     app.kubernetes.io/name: chongde-pipeline-from-scratch
+[kustomize-build : kustomize-build]     app.openshift.io/runtime: js
+[kustomize-build : kustomize-build]   name: chongde-live-pfs
+[kustomize-build : kustomize-build] spec:
+[kustomize-build : kustomize-build]   progressDeadlineSeconds: 600
+[kustomize-build : kustomize-build]   replicas: 1
+[kustomize-build : kustomize-build]   revisionHistoryLimit: 10
+[kustomize-build : kustomize-build]   selector:
+[kustomize-build : kustomize-build]     matchLabels:
+[kustomize-build : kustomize-build]       app: chongde-pipeline-from-scratch
+[kustomize-build : kustomize-build]       app.kubernetes.io/instance: chongde-pipeline-from-scratch
+[kustomize-build : kustomize-build]       app.kubernetes.io/name: chongde-pipeline-from-scratch
+[kustomize-build : kustomize-build]   template:
+[kustomize-build : kustomize-build]     metadata:
+[kustomize-build : kustomize-build]       creationTimestamp: null
+[kustomize-build : kustomize-build]       labels:
+[kustomize-build : kustomize-build]         app: chongde-pipeline-from-scratch
+[kustomize-build : kustomize-build]         app.kubernetes.io/instance: chongde-pipeline-from-scratch
+[kustomize-build : kustomize-build]         app.kubernetes.io/name: chongde-pipeline-from-scratch
+[kustomize-build : kustomize-build]     spec:
+[kustomize-build : kustomize-build]       containers:
+[kustomize-build : kustomize-build]       - env:
+[kustomize-build : kustomize-build]         - name: INGRESS_HOST
+[kustomize-build : kustomize-build]         - name: PROTOCOLS
+[kustomize-build : kustomize-build]         - name: LOG_LEVEL
+[kustomize-build : kustomize-build]           value: debug
+[kustomize-build : kustomize-build]         image: quay.io/hchongde/buildah-chongde:f9cf9bf0fc2cdfd3f68b258bd081ece5b6da04ba
+[kustomize-build : kustomize-build]         imagePullPolicy: IfNotPresent
+[kustomize-build : kustomize-build]         livenessProbe:
+[kustomize-build : kustomize-build]           failureThreshold: 3
+[kustomize-build : kustomize-build]           httpGet:
+[kustomize-build : kustomize-build]             path: /
+[kustomize-build : kustomize-build]             port: 3000
+[kustomize-build : kustomize-build]             scheme: HTTP
+[kustomize-build : kustomize-build]           periodSeconds: 10
+[kustomize-build : kustomize-build]           successThreshold: 1
+[kustomize-build : kustomize-build]           timeoutSeconds: 1
+[kustomize-build : kustomize-build]         name: chongde-live-pfs
+[kustomize-build : kustomize-build]         ports:
+[kustomize-build : kustomize-build]         - containerPort: 3000
+[kustomize-build : kustomize-build]           name: http
+[kustomize-build : kustomize-build]           protocol: TCP
+[kustomize-build : kustomize-build]         readinessProbe:
+[kustomize-build : kustomize-build]           failureThreshold: 3
+[kustomize-build : kustomize-build]           httpGet:
+[kustomize-build : kustomize-build]             path: /
+[kustomize-build : kustomize-build]             port: http
+[kustomize-build : kustomize-build]             scheme: HTTP
+[kustomize-build : kustomize-build]           periodSeconds: 10
+[kustomize-build : kustomize-build]           successThreshold: 1
+[kustomize-build : kustomize-build]           timeoutSeconds: 1
+[kustomize-build : kustomize-build]         resources: {}
+[kustomize-build : kustomize-build]         terminationMessagePath: /dev/termination-log
+[kustomize-build : kustomize-build]         terminationMessagePolicy: File
+[kustomize-build : kustomize-build]       dnsPolicy: ClusterFirst
+[kustomize-build : kustomize-build]       restartPolicy: Always
+[kustomize-build : kustomize-build]       schedulerName: default-scheduler
+[kustomize-build : kustomize-build]       securityContext: {}
+[kustomize-build : kustomize-build]       terminationGracePeriodSeconds: 30
+[kustomize-build : kustomize-build] ---
+[kustomize-build : kustomize-build] apiVersion: route.openshift.io/v1
+[kustomize-build : kustomize-build] kind: Route
+[kustomize-build : kustomize-build] metadata:
+[kustomize-build : kustomize-build]   annotations:
+[kustomize-build : kustomize-build]     argocd.argoproj.io/sync-options: Validate=false
+[kustomize-build : kustomize-build]     openshift.io/host.generated: "true"
+[kustomize-build : kustomize-build]   labels:
+[kustomize-build : kustomize-build]     app: chongde-pipeline-from-scratch
+[kustomize-build : kustomize-build]     app.kubernetes.io/instance: chongde-pipeline-from-scratch
+[kustomize-build : kustomize-build]     app.kubernetes.io/name: chongde-pipeline-from-scratch
+[kustomize-build : kustomize-build]   name: akpfs
+[kustomize-build : kustomize-build] spec:
+[kustomize-build : kustomize-build]   tls:
+[kustomize-build : kustomize-build]     termination: edge
+[kustomize-build : kustomize-build]   to:
+[kustomize-build : kustomize-build]     kind: Service
+[kustomize-build : kustomize-build]     name: chongde-live-pfs
+[kustomize-build : kustomize-build]     weight: 100
+[kustomize-build : kustomize-build]   wildcardPolicy: None
+
+[test-deploy : deploy] Deploying into: chongde-pipeline-from-scratch
+[test-deploy : deploy] service/chongde-live-pfs created
+[test-deploy : deploy] deployment.apps/chongde-live-pfs created
+[test-deploy : deploy] route.route.openshift.io/akpfs created
+
+[test-deploy : verify-deploy] Waiting for rollout of deployment/chongde-live-pfs in chongde-pipeline-from-scratch
+[test-deploy : verify-deploy] Waiting for deployment "chongde-live-pfs" rollout to finish: 0 of 1 updated replicas are available...
+[test-deploy : verify-deploy] deployment "chongde-live-pfs" successfully rolled out
